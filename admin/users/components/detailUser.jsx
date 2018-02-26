@@ -6,6 +6,8 @@ import { Link, browserHistory } from 'react-router';
 
 class DetailUserComponent extends Component {
   componentWillReceiveProps(nextProps) {
+    //when component recive props(first time and also each time container changes prop value)
+    //we check if state was set to props or props value has changed and then set/update state values
     if (this.state.firstName != nextProps.user.firstName) {
       this.setState({
         firstName: nextProps.user.firstName
@@ -24,12 +26,14 @@ class DetailUserComponent extends Component {
       });
     }
 
+    //we check if role is administrator and do some logical works.
     if (this.state.role != nextProps.user.role) {
       this.setState({
         role: nextProps.user.role
       });
     }
 
+    //updating state on change event for checkbox.
     if (this.state.status != nextProps.user.status) {
       this.setState({
         status: nextProps.user.status,
@@ -38,9 +42,11 @@ class DetailUserComponent extends Component {
     }
   }
 
+  //constructor takes props passed in from container.
   constructor(props) {
-    super(props);
-    console.log("DetailUserComponent - constructor");
+    super(props); //we pass props form container to super class React.Component also.
+    //console.log("DetailUserComponent - constructor");
+    //we define the state fields with null and assign props to them later on.
     this.state = {
       firstName: '',
       lastName: '',
@@ -50,34 +56,35 @@ class DetailUserComponent extends Component {
       isChecked: false
     }
 
-    //changes to state fields
+    //binding this to handler for changes to state fields
     this.firstName_HandleChange = this.firstName_HandleChange.bind(this);
     this.lastName_HandleChange = this.lastName_HandleChange.bind(this);
     this.emailAddress_HandleChange = this.emailAddress_HandleChange.bind(this);
     this.status_HandleChange = this.status_HandleChange.bind(this);
 
-    //final form submission
+    //binding this to handler for final form submission
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  //Handler for 
   firstName_HandleChange(event) {
-    console.log("Handler: event.target.value  " + event.target.value + '  firstName  ' + this.state.firstName);
+    console.log("Handler: event.target.value  " + event.target.value);
     this.setState({ firstName: event.target.value });
   }
 
   lastName_HandleChange(event) {
+    console.log("Handler: event.target.value  " + event.target.value);
     this.setState({ lastName: event.target.value });
-    console.log("Handler  " + event.target.value + '  lastName  ' + this.state.lastName);
   }
 
   emailAddress_HandleChange(event) {
+    console.log("Handler: event.target.value  " + event.target.value);
     this.setState({ emailAddress: event.target.value });
-    console.log("Handler  " + event.target.value + '  emailAddress  ' + this.state.emailAddress);
   }
 
   status_HandleChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    console.log("Handler: event.target.value  " + event.target.value);
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
 
     this.setState({
       isChecked: value
@@ -86,9 +93,10 @@ class DetailUserComponent extends Component {
 
 
   handleSubmit(event) {
-
-    event.preventDefault();
     console.log('handleSubmit');
+
+     //prevents default action saved by browser, only allows triggering handler if a fresh submission event has taken place, see also: event.stopPropagation()
+    event.preventDefault();
 
     const _this = this;
 
@@ -117,7 +125,9 @@ class DetailUserComponent extends Component {
       return false;
     }
 
+    
     const data = { firstName, lastName, emailAddress, status };
+    //we call this component props action>container action>Action action>dispatcher with type>listend by reducer as per type, binds back store state
     this.props.updateUser(this.props.user._id, data, function (err, res) {
       if (err) {
         console.error('updateUser: ', err);
@@ -125,7 +135,11 @@ class DetailUserComponent extends Component {
       } else {
         console.log('updateUser: ', res);
         toastr.success(res.message, 'MERNjs');
-        browserHistory.push('/admin/users'); //navid
+        /*browserHistory instance directly to call the history api methods.
+        router will listen to this and redirect accordingly. but router must be cconfigured to listen to browser history instance.
+        we have different types of history: browser history, hash history, memory history, etc
+        */
+        browserHistory.push('/admin/users'); //redirect to user page after post submission method was called
       }
     });
   }

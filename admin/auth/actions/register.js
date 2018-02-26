@@ -3,6 +3,7 @@ import axios from 'axios';
 /*
  * Get all user
  */
+//this action called form 
 export const registerUser = ((object, callback) => {
   try {
     return function (dispatch) {

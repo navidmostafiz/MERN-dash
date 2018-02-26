@@ -3,12 +3,18 @@ import axios from 'axios';
 /*
  * Get all user
  */
+//this is the action we call from component/container
+//we dispatch action types to be broadcasted to reducers.
 export const loginUser = ((object, callback) => {
   try {
     return function (dispatch) {
+      //dispatch action
+      
       dispatch({ type: 'AUTH_LOGIN_REQUEST' });
+      //use axios methods to call api with post request.
       axios.post('auth', object)
         .then((response) => {
+          //dispatch success
           dispatch({
             type: 'AUTH_LOGIN_SUCCESS',
             payload: response.data,
