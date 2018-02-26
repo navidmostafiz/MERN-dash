@@ -1,12 +1,28 @@
 # MERN-DASH
 MERN stack AUTH & CRUD Boilerplate.
 
-### Prerequisites
-NodeJs, MongoDB, RoboT3(mongo visual)
-[linux platform prefered]
+### The Stack
+* NodeJs - 
+* Node Express - Restful API
+* Axios - Async(promise based) Restful API request handler (w/ JSON formatter, XSRF)
+* ReactJs, ReactDom, React-Route - component based UI library
+* Redux - common state layer across mutiple components(dumb), containers (smart component)
+* MongoDB - NOSQL non-schema, non relational DB
+* Mongoose - ORM for Mongo
+* RoboT3 - Mongo visual
+* WebPack2 - Build tool, JS & CSS bundler
+* Babel - ES6 transpiler
+* JWT (JSON Web Token) - local Auth
+* BCrypt - hashing encryption
+* MomentJs - Date formatter
+* ToastrJs - JQuery based non-blocking notifications
+
+
+
+
+[terminal commands for linux platform]
 
 ### Installing
-
 :beetle: Step 1:
 Install NodeJs from: 
 * [NodeJs](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions) - run-time environment for executing JS on server-side
@@ -40,17 +56,12 @@ Other Git commands:
 Install all project dependencies: cmd> npm install
 
 ## Build & Start the app
-
 * To build the project: cmd> npm run build
 * To start the server and run attached project app: cmd> npm run start
 
 
-## Versioning
-pending...
-
 ## Authors
-
-* **Navid Mostafiz**
+**Navid Mostafiz**
 
 ## License
 
