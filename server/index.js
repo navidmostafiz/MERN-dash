@@ -15,6 +15,8 @@ import mongoose from 'mongoose';
  * Get MONGO_URL from environment or config and connect mongodb throw mongoose.
  */
 
+ var aaww = "navid";
+
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL || config.get('MONGO_URL'));
 
