@@ -17,6 +17,11 @@ MERN stack AUTH & CRUD Boilerplate.
 * MomentJs - Date formatter
 * ToastrJs - JQuery based non-blocking notifications
 
+Others
+* body-parser - Nodejs parser middleware for incoming request bodies
+* morgan - logging request details
+* pug  - view engine that facilitates embeded JS and renders to html [similar to: EJS by react etc]
+* redux-thunk - Redux Thunk middleware allows you to write action creators that return a function instead of an action
 
 
 
